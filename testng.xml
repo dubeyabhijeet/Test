@@ -1,0 +1,23 @@
+<suite name="SuiteName">
+	
+	
+	<test name="Sample Test" allow-return-values="true">
+		<classes>
+			<class name="com.qtpselenium.mobile.hybrid.SampleTest" />
+		</classes>
+	</test>
+	
+	<test name="Exp Test" allow-return-values="true">
+		<classes>
+			<class name="com.qtpselenium.mobile.hybrid.TestExp" />
+		</classes>
+	</test>
+	
+	<test name="Test Inc" allow-return-values="true">
+		<classes>
+			<class name="com.qtpselenium.mobile.hybrid.TestInc" />
+		</classes>
+	</test>
+	
+</suite>
+
