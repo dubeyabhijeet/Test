@@ -1,4 +1,4 @@
-package com.appium.framework.bootstrap;
+package com.appium.framework.ExecutableCommands;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.DataInputStream;
@@ -63,11 +63,8 @@ public class back  {
 	public static void main(String[] args) throws IOException, ParseException, org.json.simple.parser.ParseException, JSONException, InterruptedException {
 		report = ExtentManager.getInstance();
 		test=report.startTest("Start test");
-		test.log(LogStatus.INFO, "Gotcha");
-		test.log(LogStatus.INFO, "Comeon guys");
-		//Click m = new Click(test);
+		test.log(LogStatus.INFO, "Start Test Suite");
 		Initialize();
-		System.out.println("done");
 		report.endTest(test);
 		report.flush();
 		report.close();
@@ -76,6 +73,8 @@ public class back  {
 	
 	
 	public static void Initialize() throws IOException, ParseException, org.json.simple.parser.ParseException, JSONException, InterruptedException{
+		 
+		 //Input the test suite path
 		 String FileName="D:\\Sample";
 	
 		 //Read all files names and store in list
@@ -95,58 +94,53 @@ public class back  {
 		 for(int k=0;k<results.size();k++){
 			 		ArrayList<JSONObject> jsons=ReadJSON(new File(FileName+"\\"+results.get(k)));
        
-			 					bootfire(jsons);
+			 		bootfire(jsons);
 			 			
 		 }
 	}   
 
 public static ArrayList<JSONObject> ReadJSON(File fileName) throws FileNotFoundException, ParseException, org.json.simple.parser.ParseException {
    
-	ArrayList<JSONObject> json=new ArrayList<JSONObject>();
-    JSONObject obj;
-   // The name of the file to open.
-  // String fileName = "MyFile";
+		ArrayList<JSONObject> json=new ArrayList<JSONObject>();
+    		JSONObject obj;
+  		// The name of the file to open.
 
-   // This will reference one line at a time
-   String line = null;
+		// This will reference one line at a time
+   		String line = null;
 
-   try {
-       // FileReader reads text files in the default encoding.
-       FileReader fileReader = 
-           new FileReader(fileName);
+  	 try {
+    		   // FileReader reads text files in the default encoding.
+    		   FileReader fileReader = 
+    		   new FileReader(fileName);
 
-       // Always wrap FileReader in BufferedReader.
-       BufferedReader bufferedReader = 
-           new BufferedReader(fileReader);
+       		 // Always wrap FileReader in BufferedReader.
+      		 BufferedReader bufferedReader = 
+          	 new BufferedReader(fileReader);
 
-       while((line = bufferedReader.readLine()) != null) {
+       		while((line = bufferedReader.readLine()) != null) {
 
-               obj = (JSONObject) new JSONParser().parse(line);
-               json.add(obj);
-       }   
+               		obj = (JSONObject) new JSONParser().parse(line);
+               		json.add(obj);
+       		}   
        
-       // Always close files.
-       bufferedReader.close();         
+      	 	// Always close files.
+      	 	bufferedReader.close();         
+   	  }
+   	catch(FileNotFoundException ex) {  
+		ex.printStackTrace();
+      		test.log(LogStatus.INFO,   "Unable to open file '" + fileName + "'");
+   	}
+   	catch(IOException ex) {
+      	ex.printStackTrace();
+	test.log(LogStatus.INFO,   "Error reading file '" + fileName + "'");
    }
-   catch(FileNotFoundException ex) {
-       System.out.println(
-           "Unable to open file '" + 
-           fileName + "'");  
-      test.log(LogStatus.INFO,   "Unable to open file '" + 
-           fileName + "'");
-   }
-   catch(IOException ex) {
-       System.out.println(
-           "Error reading file '" 
-           + fileName + "'");                  
-       // Or we could just do this: 
-       // ex.printStackTrace();
-   }
-return json;
+
+	return json;
+
 }
 
 																			
-	public static void bootfire(ArrayList<JSONObject> inputLine) throws IOException, JSONException, org.json.simple.parser.ParseException, InterruptedException{
+public static void bootfire(ArrayList<JSONObject> inputLine) throws IOException, JSONException, org.json.simple.parser.ParseException, InterruptedException{
 		StartApp d = StartApp.getInstance() ;
 		String cmds1 = inputLine.get(0).toString()+"\n"; 
 		JSONParser parser1 = new JSONParser(); 
@@ -156,27 +150,21 @@ return json;
 		for(int l=1;l<inputLine.size();l++){
 			
 			String cmds = inputLine.get(l).toString()+"\n"; 
-    	 JSONParser parser = new JSONParser(); 
-    	 JSONObject jsondata = (JSONObject) parser.parse(cmds);
-
+    			JSONParser parser = new JSONParser(); 
+    	 		JSONObject jsondata = (JSONObject) parser.parse(cmds);
     	 
-    	 //Read more: http://www.java67.com/2016/10/3-ways-to-convert-string-to-json-object-in-java.html#ixzz4WnzgTKys
-    	 
-    	 map.put("click", new Click(test));
-        map.put("clickbydes", new ClickbyDesc(test));
-        map.put("shutdown", new ShutApp(test));
+    	 	map.put("click", new Click(test));
+        	map.put("clickbydes", new ClickbyDesc(test));
+       		map.put("shutdown", new ShutApp(test));
         
         
 		if(map.containsKey(jsondata.get("action"))){
 			
 			map.get(jsondata.get("action")).execute(jsondata);       
-			}
-	//	report.close();
 		
-		
-		
-	}
+		}
 
+}
 }
 }
 							

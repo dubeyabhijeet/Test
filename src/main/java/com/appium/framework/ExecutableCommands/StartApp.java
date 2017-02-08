@@ -15,15 +15,29 @@ import com.appium.framework.bootstrap.back;
 import com.appium.framework.masterexec.MasterExecuter;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 
-public class StartApp extends MasterExecuter  {
+public class StartApp  {
+	private static AndroidDriver dr;
+	private static StartApp instance = new StartApp();
 	
+	private StartApp(){
+		
+	}
+	public static StartApp getInstance() {
+        return instance;
+    }
+	
+	public AndroidDriver<MobileElement> getAppiumDriver() {
+        return dr;
+    }   
 	@SuppressWarnings("static-access")
-	@Override
+	
 	@Test
-	public void execute(JSONObject command) throws IOException, JSONException, InterruptedException{
-	//AndroidDriver dr;
+	public void execute1(JSONObject command) throws IOException, JSONException, InterruptedException{
+		
+		//AndroidDriver dr;
 	//JSONObject k = ((Object) command).getJSONObject("params");
 	//String m = k.getString("text");
 		
@@ -44,6 +58,5 @@ public class StartApp extends MasterExecuter  {
 
 	       dr = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
 	       
-	       new back(dr);
 	}
 }

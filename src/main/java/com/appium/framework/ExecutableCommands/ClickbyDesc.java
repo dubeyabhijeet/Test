@@ -14,16 +14,20 @@ import io.appium.java_client.android.AndroidKeyCode;
 
 public class ClickbyDesc extends MasterExecuter{
 	
-	public ClickbyDesc(ExtentTest test, AndroidDriver dr) {
+	public ClickbyDesc(ExtentTest test) {
 		// TODO Auto-generated constructor stub
 		this.test=test;
-		this.dr=dr;
+		
+	}
+public ClickbyDesc() {
+		// TODO Auto-generated constructor stub
 	}
 @SuppressWarnings("static-access")
 @Override
 public void execute(JSONObject command) throws IOException, JSONException{
 	test.log(LogStatus.INFO, "Execute Click");
-
+	StartApp d = StartApp.getInstance() ;
+	
 	JSONObject k = (JSONObject) command.get("params");
 	String m = k.get("text").toString();
 	
@@ -31,7 +35,8 @@ public void execute(JSONObject command) throws IOException, JSONException{
 	
 	try {
 		
-		dr.findElementByAndroidUIAutomator("UiSelector().description(\""+m+"\")").click();
+		dr1=d.getAppiumDriver();
+		dr1.findElementByAndroidUIAutomator("UiSelector().description(\""+m+"\")").click();
 		test.log(LogStatus.INFO, "Clicked on item with description :" +m);
 		//dr.pressKeyCode(AndroidKeyCode.HOME);
 		//dr.findElementByAndroidUIAutomator("UiSelector().description(\"All apps\")").click();

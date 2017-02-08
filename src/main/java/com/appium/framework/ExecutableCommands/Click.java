@@ -19,25 +19,25 @@ public class Click extends MasterExecuter{
 
 
 
-public Click(ExtentTest test, AndroidDriver dr) {
+public Click(ExtentTest test) {
 	// TODO Auto-generated constructor stub
 	this.test=test;
-	this.dr=dr;
+
 }
 
 @SuppressWarnings("static-access")
 @Override
 public void execute(JSONObject command) throws IOException, JSONException{
 	test.log(LogStatus.INFO, "Execute Click");
-
+	StartApp d = StartApp.getInstance() ;
 	JSONObject k = (JSONObject) command.get("params");
 	String m = k.get("text").toString();
 	
 	System.out.println("UiSelector().text("+m+")");
 	
 	try {
-		
-		dr.findElementByAndroidUIAutomator("UiSelector().resourceId(\""+m+"\")").click();
+		dr1=d.getAppiumDriver();
+		dr1.findElementByAndroidUIAutomator("UiSelector().resourceId(\""+m+"\")").click();
 		test.log(LogStatus.INFO, "Clicked on item with rsource id :" +m);
 		
 		
