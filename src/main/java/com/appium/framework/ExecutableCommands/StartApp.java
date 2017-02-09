@@ -41,9 +41,9 @@ public class StartApp  {
 	//JSONObject k = ((Object) command).getJSONObject("params");
 	//String m = k.getString("text");
 		
-		JSONObject k = (JSONObject) command.get("params");
-		String m = k.get("text").toString();
-		String n = k.get("text2").toString();
+		//JSONObject k = (JSONObject) command.get("params");
+		//String m = k.get("text").toString();
+		//String n = k.get("text2").toString();
 	//String n = null;
 	//	File app = new File("F:\\Mobile-testing\\apps\\com.whatsapp-2.apk");
 		 DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -53,8 +53,8 @@ public class StartApp  {
 	        capabilities.setCapability("platformName","Android");
 		// capabilities.setCapability("app", app.getAbsolutePath());
 
-	     capabilities.setCapability("appPackage", m);
-	       capabilities.setCapability("appActivity", n);
+	     capabilities.setCapability("appPackage","com.android.calendar");
+	       capabilities.setCapability("appActivity","com.android.calendar.AllInOneActivity");
 
 	       dr = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
 	       
