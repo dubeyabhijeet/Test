@@ -62,19 +62,7 @@ public class back  {
 		// TODO Auto-generated constructor stub
 	}
 	public static void main(String[] args) throws IOException, ParseException, org.json.simple.parser.ParseException, JSONException, InterruptedException {
-		report = ExtentManager.getInstance();
-		test=report.startTest("Start test");
-		test.log(LogStatus.INFO, "Start Test Suite");
-		Initialize();
-		report.endTest(test);
-		report.flush();
-		report.close();
-		
-	}
-	
-	
-	public static void Initialize() throws IOException, ParseException, org.json.simple.parser.ParseException, JSONException, InterruptedException{
-		 
+
 		 //Input the test suite path
 		 String FileName="D:\\Sample";
 	
@@ -88,18 +76,27 @@ public class back  {
 		 for (File file : files) {
 		     if (file.isFile()) {
 		         results.add(file.getName());
-		         System.out.println(FileName+"\\"+file.getName());
+		         
 		     }
 		 }
 		 
 		 for(int k=0;k<results.size();k++){
+			 	report = ExtentManager.getInstance();
+	         	test=report.startTest(results.get(k));
+		 		test.log(LogStatus.INFO, "Start Test Suite");
 			 		ArrayList<JSONObject> jsons=ReadJSON(new File(FileName+"\\"+results.get(k)));
-       
+      
 			 		bootfire(jsons);
-			 			
+			 		report.endTest(test);
+					report.flush(); 		
 		 }
-	}   
-
+		 
+			report.close();			
+		//Initialize();
+		
+		
+	}
+	
 public static ArrayList<JSONObject> ReadJSON(File fileName) throws FileNotFoundException, ParseException, org.json.simple.parser.ParseException {
    
 		ArrayList<JSONObject> json=new ArrayList<JSONObject>();
@@ -142,18 +139,17 @@ public static ArrayList<JSONObject> ReadJSON(File fileName) throws FileNotFoundE
 
 																			
 public static void bootfire(ArrayList<JSONObject> inputLine) throws IOException, JSONException, org.json.simple.parser.ParseException, InterruptedException{
+		
+		//Instantiate Android driver
 		StartApp d = StartApp.getInstance() ;
-		//String cmds1 = inputLine.get(0).toString()+"\n"; 
-		//JSONParser parser1 = new JSONParser(); 
-		//JSONObject jsondata1 = (JSONObject) parser1.parse(cmds1);
-		JSONObject jsondata1=null;
-		d.execute1(jsondata1);
+		JSONObject JsondataNull=null;
+		d.execute1(JsondataNull);
 		
 		for(int l=0;l<inputLine.size();l++){
 			
 			String cmds = inputLine.get(l).toString()+"\n"; 
-    			JSONParser parser = new JSONParser(); 
-    	 		JSONObject jsondata = (JSONObject) parser.parse(cmds);
+    		JSONParser parser = new JSONParser(); 
+    	 	JSONObject jsondata = (JSONObject) parser.parse(cmds);
     	 
     	 	map.put("click", new Click(test));
         	map.put("clickbydes", new ClickbyDesc(test));
@@ -163,11 +159,12 @@ public static void bootfire(ArrayList<JSONObject> inputLine) throws IOException,
         
 		if(map.containsKey(jsondata.get("action"))){
 			
-			map.get(jsondata.get("action")).execute(jsondata);       
+		map.get(jsondata.get("action")).execute(jsondata);       
 		
 		}
 
 }
+
 }
 }
 							

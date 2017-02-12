@@ -11,56 +11,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import org.apache.commons.io.FileUtils;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+
+import io.appium.java_client.android.AndroidDriver;
 
 public class Driver {
 
-	public static void FireCommandInSocket() throws IOException, ParseException, org.json.simple.parser.ParseException{
-		 String FileName="d:\\sample.txt";
 	
-		 //Read all files names and store in list
-		 List<String> results = new ArrayList<String>();
-
-
-		 File[] files = new File("/path/to/the/directory").listFiles();
-		 //If this pathname does not denote a directory, then listFiles() returns null. 
-
-		 for (File file : files) {
-		     if (file.isFile()) {
-		         results.add(file.getName());
-		     }
-		 }
-        ArrayList<JSONObject> jsons=ReadJSON(new File(FileName),"UTF-8");
-       
-		 for(int i=0;i<jsons.size();i++){
-		    String cmds = jsons.get(i).toString()+"\n"; 
-		    System.out.println("k");
-		    System.out.println(cmds);
-			String message;
-		
-			
-		 }
-		 }   
-
-public static ArrayList<JSONObject> ReadJSON(File MyFile,String Encoding) throws FileNotFoundException, ParseException, org.json.simple.parser.ParseException {
-    
-	Scanner scn=new Scanner(MyFile,Encoding);
-    ArrayList<JSONObject> json=new ArrayList<JSONObject>();
-
-    while(scn.hasNext()){
-        JSONObject obj= (JSONObject) new JSONParser().parse(scn.nextLine());
- 
-        json.add(obj);
-    }
-
-    return json;
-} 
-
 
 	
-//	Execute adb
-	
+
 public static void execAdbRun(String[] command) throws InterruptedException {
 		
 		// run the adb bridge
