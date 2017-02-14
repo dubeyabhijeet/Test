@@ -30,6 +30,7 @@ import org.json.JSONException;
 import java.io.DataOutputStream;
 import com.appium.framework.masterexec.MasterExecuter;
 import com.appium.framework.utils.ExtentManager;
+import com.appium.framework.utils.TestCaseReader;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
@@ -52,17 +53,22 @@ public class back  {
 	public static OutputStreamWriter osw;
 	public static BufferedWriter bw;
 	public static JSONObject jsondata=null;
+	public static JSONObject JsondataNull=null;
 	private static HashMap<String, MasterExecuter> map = new HashMap<String, MasterExecuter>();
 	public static ExtentReports report;
 	public static ExtentTest test;
-	
+	public static StartApp InitDriver = StartApp.getInstance();
+	public static  ArrayList<JSONObject> jsons=null;
 	
 	
 	public back() {
 		// TODO Auto-generated constructor stub
 	}
 	public static void main(String[] args) throws IOException, ParseException, org.json.simple.parser.ParseException, JSONException, InterruptedException {
+		
 
+		TestCaseReader R = new TestCaseReader();
+		
 		 //Input the test suite path
 		 String FileName="D:\\Sample";
 	
@@ -75,77 +81,31 @@ public class back  {
 
 		 for (File file : files) {
 		     if (file.isFile()) {
-		         results.add(file.getName());
-		         
+		        // results.add(file.getName());
+		    	 report = ExtentManager.getInstance();		 	
+		         test=report.startTest(file.getName());
+			 	 test.log(LogStatus.INFO, "Start Test Suite");
+				 ArrayList<JSONObject> jsons=R.ReadJSON(new File(FileName+"\\"+file.getName()));
+	      
+				 bootfire(jsons);
+				 report.endTest(test);
+				 report.flush(); 
 		     }
 		 }
 		 
-		 for(int k=0;k<results.size();k++){
-			 	report = ExtentManager.getInstance();
-	         	test=report.startTest(results.get(k));
-		 		test.log(LogStatus.INFO, "Start Test Suite");
-			 		ArrayList<JSONObject> jsons=ReadJSON(new File(FileName+"\\"+results.get(k)));
-      
-			 		bootfire(jsons);
-			 		report.endTest(test);
-					report.flush(); 		
-		 }
-		 
-			report.close();			
-		//Initialize();
-		
-		
+			report.close();
 	}
 	
-public static ArrayList<JSONObject> ReadJSON(File fileName) throws FileNotFoundException, ParseException, org.json.simple.parser.ParseException {
-   
-		ArrayList<JSONObject> json=new ArrayList<JSONObject>();
-    		JSONObject obj;
-  		// The name of the file to open.
-
-		// This will reference one line at a time
-   		String line = null;
-
-  	 try {
-    		   // FileReader reads text files in the default encoding.
-    		   FileReader fileReader = 
-    		   new FileReader(fileName);
-
-       		 // Always wrap FileReader in BufferedReader.
-      		 BufferedReader bufferedReader = 
-          	 new BufferedReader(fileReader);
-
-       		while((line = bufferedReader.readLine()) != null) {
-
-               		obj = (JSONObject) new JSONParser().parse(line);
-               		json.add(obj);
-       		}   
-       
-      	 	// Always close files.
-      	 	bufferedReader.close();         
-   	  }
-   	catch(FileNotFoundException ex) {  
-		ex.printStackTrace();
-      		test.log(LogStatus.INFO,   "Unable to open file '" + fileName + "'");
-   	}
-   	catch(IOException ex) {
-      	ex.printStackTrace();
-	test.log(LogStatus.INFO,   "Error reading file '" + fileName + "'");
-   }
-
-	return json;
-
-}
 
 																			
 public static void bootfire(ArrayList<JSONObject> inputLine) throws IOException, JSONException, org.json.simple.parser.ParseException, InterruptedException{
 		
 		//Instantiate Android driver
-		StartApp d = StartApp.getInstance() ;
-		JSONObject JsondataNull=null;
-		d.execute1(JsondataNull);
+			
+			
+			InitDriver.execute1(jsondata);
 		
-		for(int l=0;l<inputLine.size();l++){
+			for(int l=0;l<inputLine.size();l++){
 			
 			String cmds = inputLine.get(l).toString()+"\n"; 
     		JSONParser parser = new JSONParser(); 
@@ -157,9 +117,9 @@ public static void bootfire(ArrayList<JSONObject> inputLine) throws IOException,
        		map.put("startact", new StartNewActivity(test));
         
         
-		if(map.containsKey(jsondata.get("action"))){
+       		if(map.containsKey(jsondata.get("action"))){
 			
-		map.get(jsondata.get("action")).execute(jsondata);       
+       		map.get(jsondata.get("action")).execute(jsondata);       
 		
 		}
 

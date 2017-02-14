@@ -36,7 +36,6 @@
 	<classpathentry kind="var" path="M2_REPO/io/netty/netty/3.5.7.Final/netty-3.5.7.Final.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/seleniumhq/selenium/selenium-support/2.53.0/selenium-support-2.53.0.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/seleniumhq/selenium/selenium-leg-rc/2.53.0/selenium-leg-rc-2.53.0.jar"/>
-	<classpathentry kind="var" path="M2_REPO/com/relevantcodes/extentreports/2.40.1/extentreports-2.40.1.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/jsoup/jsoup/1.8.3/jsoup-1.8.3.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/xerial/sqlite-jdbc/3.8.11.1/sqlite-jdbc-3.8.11.1.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/freemarker/freemarker/2.3.23/freemarker-2.3.23.jar"/>
@@ -59,5 +58,9 @@
 	<classpathentry kind="var" path="M2_REPO/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar"/>
 	<classpathentry kind="var" path="M2_REPO/com/googlecode/json-simple/json-simple/1.1.1/json-simple-1.1.1.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/json/json/20080701/json-20080701.jar"/>
+	<classpathentry kind="lib" path="C:/Users/DUBEY/.m2/repository/com/relevantcodes/extentreports/2.41.2/extentreports-2.41.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/DUBEY/.m2/repository/org/mongodb/bson/3.4.2/bson-3.4.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/DUBEY/.m2/repository/org/mongodb/mongodb-driver/3.0.4/mongodb-driver-3.0.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/DUBEY/.m2/repository/org/mongodb/mongodb-driver-core/3.4.2/mongodb-driver-core-3.4.2.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

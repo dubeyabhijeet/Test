@@ -19,7 +19,10 @@ public class ExtentManager {
 			String path="E:\\";
 			String fileName=d.toString().replace(":", "_").replace(" ", "_")+".html";
 			extent = new ExtentReports(path+fileName, true, DisplayOrder.NEWEST_FIRST);
-
+		
+			//extent.x("http://127.0.0.1:1337/#/");
+		//	extent.x("http://127.0.0.1:1337");
+		//	extent.x("localhost",1337);
 			// optional
 		//	extent.config().documentTitle("Automation Report")
 		//			.reportName("Regression").reportHeadline("");

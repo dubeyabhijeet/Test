@@ -52,7 +52,7 @@ public class StartApp  {
 	        capabilities.setCapability("platformVersion", "4.4.4");
 	        capabilities.setCapability("platformName","Android");
 		// capabilities.setCapability("app", app.getAbsolutePath());
-
+	        
 	     capabilities.setCapability("appPackage","com.android.calendar");
 	       capabilities.setCapability("appActivity","com.android.calendar.AllInOneActivity");
 
