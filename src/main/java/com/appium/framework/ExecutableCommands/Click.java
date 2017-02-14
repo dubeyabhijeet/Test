@@ -37,10 +37,17 @@ public void execute(JSONObject command) throws IOException, JSONException{
 	
 	try {
 		dr1=d.getAppiumDriver();
-		dr1.findElementByAndroidUIAutomator("UiSelector().resourceId(\""+m+"\")").click();
+		
+		if(k.containsKey("id")){
+		dr1.findElementByAndroidUIAutomator("UiSelector().resourceId(\""+k.get("id").toString()+"\")").click();
 		test.log(LogStatus.INFO, "Clicked on item with rsource id :" +m);
-		
-		
+		}else if(k.containsKey("desc")){
+			dr1.findElementByAndroidUIAutomator("UiSelector().description(\""+k.get("desc").toString()+"\")").click();
+			test.log(LogStatus.INFO, "Clicked on item with description :" +m);
+		}else if(k.containsKey("text")){
+			dr1.findElementByAndroidUIAutomator("UiSelector().text(\""+k.get("text").toString()+"\")").click();
+			test.log(LogStatus.INFO, "Clicked on item with description :" +m);
+		}
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

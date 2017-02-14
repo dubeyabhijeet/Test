@@ -27,19 +27,13 @@ public class EnterSubSettings extends MasterExecuter{
 			JSONObject k = (JSONObject) command.get("params");
 			String m = k.get("text").toString();
 			
-			System.out.println("UiSelector().text("+m+")");
-			
 			try {
 				dr1=d.getAppiumDriver();
-				dr1.findElementByAndroidUIAutomator("UiSelector().resourceId(\""+m+"\")").click();
+				dr1.startActivity("com.android.settings","com.android.settings.Settings");
 				test.log(LogStatus.INFO, "Clicked on item with rsource id :" +m);
-				
-				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println("Clicked");
-			//test;
 		}	
 		}
