@@ -18,6 +18,8 @@ import java.net.Socket;
 import java.text.ParseException;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.testng.annotations.Test;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -44,7 +46,7 @@ import com.appium.framework.ExecutableCommands.StartApp;
 import com.appium.framework.ExecutableCommands.StartNewActivity;
 
 
-public class back  {
+public class bootstrap  {
 	
 	public static InputStream is;
 	public static InputStreamReader isr;
@@ -61,10 +63,11 @@ public class back  {
 	public static  ArrayList<JSONObject> jsons=null;
 	
 	
-	public back() {
+	public bootstrap() {
 		// TODO Auto-generated constructor stub
 	}
-	public static void main(String[] args) throws IOException, ParseException, org.json.simple.parser.ParseException, JSONException, InterruptedException {
+	@Test
+	public static void StartTest() throws IOException, ParseException, org.json.simple.parser.ParseException, JSONException, InterruptedException {
 		
 
 		TestCaseReader R = new TestCaseReader();

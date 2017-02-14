@@ -11,7 +11,7 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.Test;
 
-import com.appium.framework.bootstrap.back;
+import com.appium.framework.bootstrap.bootstrap;
 import com.appium.framework.masterexec.MasterExecuter;
 
 import io.appium.java_client.AppiumDriver;
