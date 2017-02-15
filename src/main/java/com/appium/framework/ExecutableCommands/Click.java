@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 
 import com.appium.framework.masterexec.MasterExecuter;
+import com.appium.framework.utils.JsonParser;
 import com.appium.framework.utils.test;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
@@ -15,6 +16,7 @@ import com.relevantcodes.extentreports.LogStatus;
 import io.appium.java_client.android.AndroidDriver;
 
 public class Click extends MasterExecuter{
+	public static	JsonParser Parser;
 	public static Click c = new Click();
 
 public Click(ExtentTest test) {
@@ -32,21 +34,21 @@ public Click() {
 public void execute(JSONObject command) throws IOException, JSONException{
 	test.log(LogStatus.INFO, "Execute Click");
 	StartApp d = StartApp.getInstance() ;
+	Parser= new JsonParser(test);
 	JSONObject k = (JSONObject) command.get("params");
-	String m = k.get("text").toString();
 	
 	try {
 		dr1=d.getAppiumDriver();
 		
 		if(k.containsKey("id")){
-		dr1.findElementByAndroidUIAutomator("UiSelector().resourceId(\""+k.get("id").toString()+"\")").click();
-		test.log(LogStatus.INFO, "Clicked on item with rsource id :" +m);
+		dr1.findElementByAndroidUIAutomator("UiSelector().resourceId(\""+Parser.Parser(command,"id")+"\")").click();
+		test.log(LogStatus.INFO, "Clicked on item with rsource id :" + Parser.Parser(command,"id"));
 		}else if(k.containsKey("desc")){
-			dr1.findElementByAndroidUIAutomator("UiSelector().description(\""+k.get("desc").toString()+"\")").click();
-			test.log(LogStatus.INFO, "Clicked on item with description :" +m);
+			dr1.findElementByAndroidUIAutomator("UiSelector().description(\""+Parser.Parser(command,"desc")+"\")").click();
+			test.log(LogStatus.INFO, "Clicked on item with description :" + Parser.Parser(command,"desc"));
 		}else if(k.containsKey("text")){
-			dr1.findElementByAndroidUIAutomator("UiSelector().text(\""+k.get("text").toString()+"\")").click();
-			test.log(LogStatus.INFO, "Clicked on item with description :" +m);
+			dr1.findElementByAndroidUIAutomator("UiSelector().text(\""+Parser.Parser(command,"text")+"\")").click();
+			test.log(LogStatus.INFO, "Clicked on item with description :" + Parser.Parser(command,"text"));
 		}
 	} catch (Exception e) {
 		// TODO Auto-generated catch block

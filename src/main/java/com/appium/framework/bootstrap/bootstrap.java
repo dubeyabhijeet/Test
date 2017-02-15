@@ -40,6 +40,7 @@ import com.relevantcodes.extentreports.LogStatus;
 import io.appium.java_client.android.AndroidDriver;
 
 import com.appium.framework.ExecutableCommands.Click;
+import com.appium.framework.ExecutableCommands.EnterSubSettings;
 import com.appium.framework.ExecutableCommands.ShutApp;
 import com.appium.framework.ExecutableCommands.StartApp;
 import com.appium.framework.ExecutableCommands.StartNewActivity;
@@ -116,6 +117,7 @@ public static void bootfire(ArrayList<JSONObject> inputLine) throws IOException,
     	 	map.put("click", new Click(test));
        		map.put("shutdown", new ShutApp(test));
        		map.put("startact", new StartNewActivity(test));
+       		map.put("EnterSubSettings", new EnterSubSettings(test));
         
         
        		if(map.containsKey(jsondata.get("action"))){

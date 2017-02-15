@@ -1,62 +1,45 @@
 package com.appium.framework.utils;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.text.ParseException;
-import java.util.ArrayList;
 
+import org.json.JSONException;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 
-public class test {
+import com.appium.framework.ExecutableCommands.StartApp;
+import com.appium.framework.masterexec.MasterExecuter;
+import com.appium.framework.utils.JsonParser;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
 
-	public static void main(String[] args) throws org.json.simple.parser.ParseException {
-		// TODO Auto-generated method stub
-		ArrayList<JSONObject> json=new ArrayList<JSONObject>();
-	     JSONObject obj;
-	    // The name of the file to open.
-	    String fileName = "D:\\Sample\\TC1.txt  ";
+public class test extends MasterExecuter{
+public static	JsonParser Parser;
+		public test(ExtentTest test) {
+			// TODO Auto-generated constructor stub
+			this.test=test;
 
-	    // This will reference one line at a time
-	    String line = null;
+		}
 
-	    try {
-	        // FileReader reads text files in the default encoding.
-	        FileReader fileReader = 
-	            new FileReader(fileName);
+		public test() {
+			// TODO Auto-generated constructor stub
+		}
 
-	        // Always wrap FileReader in BufferedReader.
-	        BufferedReader bufferedReader = 
-	            new BufferedReader(fileReader);
-
-	        while((line = bufferedReader.readLine()) != null) {
-
-	                obj = (JSONObject) new JSONParser().parse(line);
-	                json.add(obj);
-	        }   
-	        for(int i=0;i<json.size();i++){
-			    System.out.println(json.get(i).toString()+"\n");
-	        }
-	        // Always close files.
-	        bufferedReader.close();         
-	    }
-	    catch(FileNotFoundException ex) {
-	        System.out.println(
-	            "Unable to open file '" + 
-	            fileName + "'");                
-	    }
-	    catch(IOException ex) {
-	        System.out.println(
-	            "Error reading file '" 
-	            + fileName + "'");                  
-	        // Or we could just do this: 
-	        // ex.printStackTrace();
-	    }
-	}
-
-
-
-	}
-
+		@SuppressWarnings("static-access")
+		@Override
+		public void execute(JSONObject command) throws IOException, JSONException{
+			
+			test.log(LogStatus.INFO, "Enter Settings");
+			StartApp d = StartApp.getInstance() ;
+			Parser= new JsonParser(test);
+		
+			try {
+				dr1=d.getAppiumDriver();
+				dr1.startActivity("com.android.settings","com.android.settings.Settings");
+				dr1.scrollTo(Parser.Parser(command,"text")).click();
+				System.out.println(dr1.getContext());
+				test.log(LogStatus.INFO, "Clicked on menu item :" + Parser.Parser(command,"text"));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}	
+		}
