@@ -28,7 +28,7 @@ public abstract class MasterExecuter {
 	}
 	
 	public static void getScreenshot(AndroidDriver driver, String outputlocation, String TCName ) throws IOException {
-		System.out.println(outputlocation);
+		
 		File srcFile=driver.getScreenshotAs(OutputType.FILE);
 	    File targetFile=new File(outputlocation+"\\"+TCName+".png");
 	    
@@ -37,6 +37,10 @@ public abstract class MasterExecuter {
 	    } catch (IOException e) {
 	    	   e.printStackTrace();
 	    	  }
+	}
+	
+	public static void IsElementPresent(){
+		
 	}
 
 }

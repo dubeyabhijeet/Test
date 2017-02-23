@@ -20,9 +20,9 @@ public class TestCaseReader {
 	public TestCaseReader(){
 			}
 	
-public static ArrayList<JSONObject> ReadJSON(File fileName) throws FileNotFoundException, ParseException, org.json.simple.parser.ParseException {
+public static ArrayList<String> ReadJSON(File fileName) throws FileNotFoundException, ParseException, org.json.simple.parser.ParseException {
 			   
-				ArrayList<JSONObject> json=new ArrayList<JSONObject>();
+				ArrayList<String> ReadString=new ArrayList<String>();
 		    		JSONObject obj;
 		  		// The name of the file to open.
 
@@ -40,8 +40,8 @@ public static ArrayList<JSONObject> ReadJSON(File fileName) throws FileNotFoundE
 
 		       		while((line = bufferedReader.readLine()) != null) {
 
-		               		obj = (JSONObject) new JSONParser().parse(line);
-		               		json.add(obj);
+		               		//obj = (JSONObject) new JSONParser().parse(line);
+		       			ReadString.add(line);
 		       		}   
 		       
 		      	 	// Always close files.
@@ -56,7 +56,7 @@ public static ArrayList<JSONObject> ReadJSON(File fileName) throws FileNotFoundE
 		//	test.log(LogStatus.INFO,   "Error reading file '" + fileName + "'");
 		   }
 
-			return json;
+			return ReadString;
 
 		}
 

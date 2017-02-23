@@ -69,8 +69,12 @@ public class bootstrap  {
 	@Test
 	public static void StartTest() throws IOException, ParseException, org.json.simple.parser.ParseException, JSONException, InterruptedException {
 		
-
-		TestCaseReader R = new TestCaseReader();
+	 	map.put("click", new Click(test));
+   		map.put("shutdown", new ShutApp(test));
+   		map.put("startact", new StartNewActivity(test));
+   		map.put("EnterSubSettings", new EnterSubSettings(test));
+    
+   		TestCaseReader R = new TestCaseReader();
 		
 		 //Input the test suite path
 		 String FileName="D:\\Sample";
@@ -88,9 +92,20 @@ public class bootstrap  {
 		    	 report = ExtentManager.getInstance();		 	
 		         test=report.startTest(file.getName());
 			 	 test.log(LogStatus.INFO, "Start Test Suite");
-				 ArrayList<JSONObject> jsons=R.ReadJSON(new File(FileName+"\\"+file.getName()));
-	      
-				 bootfire(jsons);
+				 ArrayList<String> CommandLine = TestCaseReader.ReadJSON(new File(FileName+"\\"+file.getName()));
+				
+				 for(int l=0;l<CommandLine.size();l++){
+						
+						String cmds = CommandLine.get(l)+"\n"; 
+			    		
+			    	 	JSONObject jsondata = (JSONObject) new JSONParser().parse(cmds);
+
+			       		if(map.containsKey(jsondata.get("action"))){
+						
+			       		map.get(jsondata.get("action")).execute(jsondata);       
+					
+					}
+	
 				 report.endTest(test);
 				 report.flush(); 
 		     }
@@ -98,39 +113,11 @@ public class bootstrap  {
 		 
 			report.close();
 	}
+	}
 	
-
+}
 																			
-public static void bootfire(ArrayList<JSONObject> inputLine) throws IOException, JSONException, org.json.simple.parser.ParseException, InterruptedException{
-		
-		//Instantiate Android driver
-			
-			
-			InitDriver.execute1(jsondata);
-		
-			for(int l=0;l<inputLine.size();l++){
-			
-			String cmds = inputLine.get(l).toString()+"\n"; 
-    		JSONParser parser = new JSONParser(); 
-    	 	JSONObject jsondata = (JSONObject) parser.parse(cmds);
-    	 
-    	 	map.put("click", new Click(test));
-       		map.put("shutdown", new ShutApp(test));
-       		map.put("startact", new StartNewActivity(test));
-       		map.put("EnterSubSettings", new EnterSubSettings(test));
-        
-        
-       		if(map.containsKey(jsondata.get("action"))){
-			
-       		map.get(jsondata.get("action")).execute(jsondata);       
-		
-		}
-
-}
-
-}
-}
-							
+				
 
 		
 		

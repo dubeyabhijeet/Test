@@ -36,25 +36,16 @@ public class StartApp  {
 	
 	@Test
 	public void execute1(JSONObject command) throws IOException, JSONException, InterruptedException{
-		
-		//AndroidDriver dr;
-	//JSONObject k = ((Object) command).getJSONObject("params");
-	//String m = k.getString("text");
-		
-		//JSONObject k = (JSONObject) command.get("params");
-		//String m = k.get("text").toString();
-		//String n = k.get("text2").toString();
-	//String n = null;
-	//	File app = new File("F:\\Mobile-testing\\apps\\com.whatsapp-2.apk");
-		 DesiredCapabilities capabilities = new DesiredCapabilities();
+
+			DesiredCapabilities capabilities = new DesiredCapabilities();
 	        capabilities.setCapability(CapabilityType.BROWSER_NAME, "");
 	        capabilities.setCapability("deviceName","Nexus 5");
 	        capabilities.setCapability("platformVersion", "4.4.4");
 	        capabilities.setCapability("platformName","Android");
 		// capabilities.setCapability("app", app.getAbsolutePath());
 	        
-	     capabilities.setCapability("appPackage","com.android.calendar");
-	       capabilities.setCapability("appActivity","com.android.calendar.AllInOneActivity");
+	        capabilities.setCapability("appPackage","com.android.calendar");
+	        capabilities.setCapability("appActivity","com.android.calendar.AllInOneActivity");
 
 	       dr = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
 	       
