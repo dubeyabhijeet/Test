@@ -69,10 +69,7 @@ public class bootstrap  {
 	@Test
 	public static void StartTest() throws IOException, ParseException, org.json.simple.parser.ParseException, JSONException, InterruptedException {
 		
-	 	map.put("click", new Click(test));
-   		map.put("shutdown", new ShutApp(test));
-   		map.put("startact", new StartNewActivity(test));
-   		map.put("EnterSubSettings", new EnterSubSettings(test));
+	
     
    		TestCaseReader R = new TestCaseReader();
 		
@@ -91,15 +88,23 @@ public class bootstrap  {
 		        // results.add(file.getName());
 		    	 report = ExtentManager.getInstance();		 	
 		         test=report.startTest(file.getName());
+		         //Initialize map
+		      	 map.put("click", new Click(test));
+		   		 map.put("shutdown", new ShutApp(test));
+		   		 map.put("startact", new StartNewActivity(test));
+		   		 map.put("EnterSubSettings", new EnterSubSettings(test));
+		   		
 			 	 test.log(LogStatus.INFO, "Start Test Suite");
+			 	 
 				 ArrayList<String> CommandLine = TestCaseReader.ReadJSON(new File(FileName+"\\"+file.getName()));
-				
+				 StartApp.getInstance().execute1(JsondataNull);
 				 for(int l=0;l<CommandLine.size();l++){
 						
 						String cmds = CommandLine.get(l)+"\n"; 
 			    		
 			    	 	JSONObject jsondata = (JSONObject) new JSONParser().parse(cmds);
 
+			    	 	
 			       		if(map.containsKey(jsondata.get("action"))){
 						
 			       		map.get(jsondata.get("action")).execute(jsondata);       

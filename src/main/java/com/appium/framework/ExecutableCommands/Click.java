@@ -39,7 +39,6 @@ public void execute(JSONObject command) throws IOException, JSONException{
 	
 	try {
 		dr1=d.getAppiumDriver();
-		
 		Element=Parser.IsElementPresent(command,test,dr1);
 		if(Element!=null){
 		Element.click();

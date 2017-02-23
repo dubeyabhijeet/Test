@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 
 import com.appium.framework.bootstrap.bootstrap;
 import com.appium.framework.masterexec.MasterExecuter;
+import com.relevantcodes.extentreports.ExtentTest;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
@@ -22,7 +23,7 @@ import io.appium.java_client.android.AndroidElement;
 public class StartApp  {
 	private static AndroidDriver<AndroidElement> dr;
 	private static StartApp instance = new StartApp();
-	
+
 	private StartApp(){
 		
 	}

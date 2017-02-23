@@ -33,12 +33,20 @@ public static	JsonParser Parser;
 			try {
 				dr1=d.getAppiumDriver();
 				dr1.startActivity("com.android.settings","com.android.settings.Settings");
-				dr1.scrollTo(Parser.Parser(command,"text")).click();
-			
-				test.log(LogStatus.INFO, "Clicked on menu item :" + Parser.Parser(command,"text"));
+				Element=Parser.IsElementPresent(command,test,dr1);
+				if(Element!=null){
+					Element.click();
+					}else{
+						new ShutApp(test).execute(null);
+					}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
+				// TODO Auto-generated catch block
 				e.printStackTrace();
+				System.out.println("f");
+				Parser.getScreenshot(dr1,"D:\\Reports","TC2");
+				test.log(LogStatus.FAIL, "Fail" + e);
+				test.log(LogStatus.FAIL,"Fail" + e+"\n",test.addScreenCapture("D:\\Reports"+"\\"+"TC2"+".png"));
 			}
 		}	
 		}

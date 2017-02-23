@@ -4,8 +4,11 @@ import java.io.IOException;
 
 import org.json.JSONException;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import com.appium.framework.masterexec.MasterExecuter;
+import com.appium.framework.utils.JsonParser;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
@@ -23,19 +26,20 @@ public StartNewActivity(ExtentTest test) {
 
 @SuppressWarnings("static-access")
 @Override
-public void execute(JSONObject command) throws IOException, JSONException{
+public void execute(JSONObject command) throws IOException, JSONException, ParseException{
 	test.log(LogStatus.INFO, "Execute Click");
+	Parser2= new JsonParser(test);
+	String k = Parser2.Parser(command, "params")+"\n";
+	JSONObject k2 =(JSONObject)new JSONParser().parse(k);
+	
 	StartApp d = StartApp.getInstance() ;
-	JSONObject k = (JSONObject) command.get("params");
-	String m = k.get("text").toString();
-	String n = k.get("text2").toString();
-	
-	System.out.println("UiSelector().text("+m+")");
-	
+	String apppackage = Parser2.Parser(k2, "text");
+	String activity =Parser2.Parser(k2, "text2");
+
 	try {
 		dr1=d.getAppiumDriver();
-		dr1.startActivity(m, n);
-		test.log(LogStatus.INFO, "Clicked on item with rsource id :" +m);
+		dr1.startActivity(apppackage,activity);
+		//test.log(LogStatus.INFO, "Started new activity w" + Parser.Parser((JSONObject)new JSONParser().parse(k), "text2").toString());
 		
 	} catch (Exception e) {
 		// TODO Auto-generated catch block

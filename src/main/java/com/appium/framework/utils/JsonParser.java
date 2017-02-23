@@ -25,10 +25,10 @@ public JsonParser(ExtentTest test) {
 	this.test=test;
 
 }
-public static String Parser(JSONObject command, String text){
+public static String Parser(JSONObject command, String id){
 		try{
-		js = (JSONObject) command.get("params");
-		str = js.get(text).toString();
+			str = command.get(id).toString();
+		 		System.out.println(str + "in parser");
 		}catch (Exception e){
 			test.log(LogStatus.FAIL, e + "Fail to parse json");
 		}
@@ -41,14 +41,14 @@ public static AndroidElement IsElementPresent(JSONObject JsonObj,ExtentTest test
 	try{
 
 		if(JsonObj.containsKey("id")){			
-			AndEle=(AndroidElement) d.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView("+ "new UiSelector().resourceId("+Parser(JsonObj, "id")+"));"));
-			test.log(LogStatus.INFO, "Clicked on item with rsource id :" + Parser(JsonObj,"id"));
+			AndEle=(AndroidElement) d.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView("+ "new UiSelector().resourceId("+(Parser(JsonObj,"id"))+"));"));
+			test.log(LogStatus.INFO, "Clicked on item with rsource id :" + (Parser(JsonObj,"id")));
 			}else if(JsonObj.containsKey("desc")){
-			AndEle=(AndroidElement)d.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView("+ "new UiSelector().description("+Parser(JsonObj, "desc")+"));"));
-				test.log(LogStatus.INFO, "Clicked on item with description :" + Parser(JsonObj,"desc"));
+			AndEle=(AndroidElement)d.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView("+ "new UiSelector().description("+(Parser(JsonObj,"desc"))+"));"));
+				test.log(LogStatus.INFO, "Clicked on item with description :" + (Parser(JsonObj,"id")));
 			}else if(JsonObj.containsKey("text")){
-			AndEle=(AndroidElement)d.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView("+ "new UiSelector().text("+Parser(JsonObj, "text")+"));"));
-				test.log(LogStatus.INFO, "Clicked on item with description :" + Parser(JsonObj,"text"));
+			AndEle=(AndroidElement)d.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView("+ "new UiSelector().text("+(Parser(JsonObj,"text"))+"));"));
+				test.log(LogStatus.INFO, "Clicked on item with description :" + (Parser(JsonObj,"id")));
 			}
 		
 		return AndEle;

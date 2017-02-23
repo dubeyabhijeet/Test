@@ -6,6 +6,7 @@ import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.json.JSONException;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 import org.openqa.selenium.OutputType;
 
 import com.relevantcodes.extentreports.ExtentTest;
@@ -25,8 +26,8 @@ public abstract class MasterExecuter {
 	public AndroidDriver<AndroidElement> dr1;
 	public AndroidElement Element;
 	public ExtentTest test;
-	public static	JsonParser Parser;
-	public void execute(JSONObject command) throws IOException, JSONException, InterruptedException {
+	public static JsonParser Parser2;
+	public void execute(JSONObject command) throws IOException, JSONException, InterruptedException, ParseException {
 		
 		// TODO Auto-generated method stub
 		
