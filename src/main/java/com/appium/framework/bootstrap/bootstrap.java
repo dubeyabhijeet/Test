@@ -56,12 +56,13 @@ public class bootstrap  {
 	public static BufferedWriter bw;
 	public static JSONObject jsondata=null;
 	public static JSONObject JsondataNull=null;
+	public static JSONObject jsondata2=null;
 	private static HashMap<String, MasterExecuter> map = new HashMap<String, MasterExecuter>();
 	public static ExtentReports report;
 	public static ExtentTest test;
 	public static StartApp InitDriver = StartApp.getInstance();
 	public static  ArrayList<JSONObject> jsons=null;
-	
+	public static ArrayList<String> CommandLine=null;
 	
 	public bootstrap() {
 		// TODO Auto-generated constructor stub
@@ -96,24 +97,48 @@ public class bootstrap  {
 		   		
 			 	 test.log(LogStatus.INFO, "Start Test Suite");
 			 	 
-				 ArrayList<String> CommandLine = TestCaseReader.ReadJSON(new File(FileName+"\\"+file.getName()));
+				 CommandLine = TestCaseReader.ReadJSON(new File(FileName+"\\"+file.getName()));
 				 StartApp.getInstance().execute1(JsondataNull);
 				 for(int l=0;l<CommandLine.size();l++){
 						
 						String cmds = CommandLine.get(l)+"\n"; 
 			    		
-			    	 	JSONObject jsondata = (JSONObject) new JSONParser().parse(cmds);
+			    	 	jsondata = (JSONObject) new JSONParser().parse(cmds);
 
 			    	 	
-			       		if(map.containsKey(jsondata.get("action"))){
-						
-			       		map.get(jsondata.get("action")).execute(jsondata);       
+
+			System.out.println("command"  +  jsondata.get("action").toString());			
+			if((jsondata.get("action").toString()).equals("loop")){
+				jsondata2 = (JSONObject) new JSONParser().parse(cmds);
+				System.out.println("Start loop");
+				int i=1;
+				int k=l;
+			      for(int h=0;h<Integer.parseInt(jsondata.get("params").toString());h++){
+			    	  System.out.println(h);
+			    	  while(!((jsondata2.get("action").toString()).equals("endloop"))){
+			       					System.out.println(jsondata2.get("action").toString());
+			       					i =l+i;
+			       					String cmds2 = CommandLine.get(i)+"\n";
+			       					System.out.println(cmds2);
+						    	 	jsondata2 = (JSONObject) new JSONParser().parse(cmds2);
+						    	 	if(!((jsondata2.get("action").toString()).equals("endloop"))){
+						    	 	map.get(jsondata2.get("action")).execute(jsondata2); 
+						    	 	}
+						    	 	i++;
+						    	 	k++;
+			       				}
+			    	  l=k;
+			       				
+			      }
+			       }else
+			    	   
+			       	map.get(jsondata.get("action")).execute(jsondata);       
 					
 					}
 	
 				 report.endTest(test);
 				 report.flush(); 
-		     }
+		     
 		 }
 		 
 			report.close();
