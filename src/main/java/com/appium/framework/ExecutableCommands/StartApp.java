@@ -17,9 +17,10 @@ import com.appium.framework.masterexec.MasterExecuter;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
 
 public class StartApp  {
-	private static AndroidDriver dr;
+	private static AndroidDriver<AndroidElement> dr;
 	private static StartApp instance = new StartApp();
 	
 	private StartApp(){
@@ -29,7 +30,7 @@ public class StartApp  {
         return instance;
     }
 	
-	public AndroidDriver<MobileElement> getAppiumDriver() {
+	public AndroidDriver<AndroidElement> getAppiumDriver() {
         return dr;
     }   
 	@SuppressWarnings("static-access")
@@ -47,7 +48,7 @@ public class StartApp  {
 	        capabilities.setCapability("appPackage","com.android.calendar");
 	        capabilities.setCapability("appActivity","com.android.calendar.AllInOneActivity");
 
-	       dr = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+	       dr = new AndroidDriver<AndroidElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
 	       
 	}
 }

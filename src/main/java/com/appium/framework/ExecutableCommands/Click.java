@@ -29,32 +29,29 @@ public Click() {
 	// TODO Auto-generated constructor stub
 }
 
-@SuppressWarnings("static-access")
+@SuppressWarnings({ "static-access", "unchecked" })
 @Override
 public void execute(JSONObject command) throws IOException, JSONException{
 	test.log(LogStatus.INFO, "Execute Click");
 	StartApp d = StartApp.getInstance() ;
 	Parser= new JsonParser(test);
-	JSONObject k = (JSONObject) command.get("params");
+	//JSONObject baseparser = (JSONObject) command.get("params");
 	
 	try {
 		dr1=d.getAppiumDriver();
 		
-		if(k.containsKey("id")){
-		dr1.findElementByAndroidUIAutomator("UiSelector().resourceId(\""+Parser.Parser(command,"id")+"\")").click();
-		test.log(LogStatus.INFO, "Clicked on item with rsource id :" + Parser.Parser(command,"id"));
-		}else if(k.containsKey("desc")){
-			dr1.findElementByAndroidUIAutomator("UiSelector().description(\""+Parser.Parser(command,"desc")+"\")").click();
-			test.log(LogStatus.INFO, "Clicked on item with description :" + Parser.Parser(command,"desc"));
-		}else if(k.containsKey("text")){
-			dr1.findElementByAndroidUIAutomator("UiSelector().text(\""+Parser.Parser(command,"text")+"\")").click();
-			test.log(LogStatus.INFO, "Clicked on item with description :" + Parser.Parser(command,"text"));
+		Element=Parser.IsElementPresent(command,test,dr1);
+		if(Element!=null){
+		Element.click();
+		}else{
+			new ShutApp(test).execute(null);
 		}
+		
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 		System.out.println("f");
-		getScreenshot(dr1,"D:\\Reports","TC2");
+		Parser.getScreenshot(dr1,"D:\\Reports","TC2");
 		test.log(LogStatus.FAIL, "Fail" + e);
 		test.log(LogStatus.FAIL,"Fail" + e+"\n",test.addScreenCapture("D:\\Reports"+"\\"+"TC2"+".png"));
 	}

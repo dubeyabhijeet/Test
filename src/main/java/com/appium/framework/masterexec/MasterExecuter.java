@@ -9,38 +9,36 @@ import org.json.simple.JSONObject;
 import org.openqa.selenium.OutputType;
 
 import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
+import com.appium.framework.utils.JsonParser;
 import com.relevantcodes.extentreports.ExtentReports;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
 
 
 
 public abstract class MasterExecuter {
 	
-	public AndroidDriver<MobileElement> dr1;
+	public AndroidDriver<AndroidElement> dr1;
+	public AndroidElement Element;
 	public ExtentTest test;
-
+	public static	JsonParser Parser;
 	public void execute(JSONObject command) throws IOException, JSONException, InterruptedException {
 		
 		// TODO Auto-generated method stub
 		
 	}
 	
-	public static void getScreenshot(AndroidDriver driver, String outputlocation, String TCName ) throws IOException {
-		
-		File srcFile=driver.getScreenshotAs(OutputType.FILE);
-	    File targetFile=new File(outputlocation+"\\"+TCName+".png");
-	    
-	    try {
-	    FileUtils.copyFile(srcFile, targetFile);
-	    } catch (IOException e) {
-	    	   e.printStackTrace();
-	    	  }
-	}
 	
-	public static void IsElementPresent(){
+	
+	
+		
+		
+		
 		
 	}
 
-}
+
