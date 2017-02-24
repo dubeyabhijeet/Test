@@ -35,13 +35,16 @@ public void execute(JSONObject command) throws IOException, JSONException{
 	test.log(LogStatus.INFO, "Execute Click");
 	StartApp d = StartApp.getInstance() ;
 	Parser= new JsonParser(test);
+	
 	//JSONObject baseparser = (JSONObject) command.get("params");
 	
 	try {
 		dr1=d.getAppiumDriver();
 		Element=Parser.IsElementPresent(command,test,dr1);
+		test.log(LogStatus.INFO, "Clicked on"+ Parser.Parser(command,"params"));
 		if(Element!=null){
 		Element.click();
+		
 		}else{
 			new ShutApp(test).execute(null);
 		}

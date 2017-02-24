@@ -2,12 +2,12 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="9369" started-at="2017-02-23T19:52:53Z" finished-at="2017-02-23T19:53:02Z">
+  <suite name="Default suite" duration-ms="9122" started-at="2017-02-23T20:03:05Z" finished-at="2017-02-23T20:03:14Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="9369" started-at="2017-02-23T19:52:53Z" finished-at="2017-02-23T19:53:02Z">
+    <test name="Default test" duration-ms="9122" started-at="2017-02-23T20:03:05Z" finished-at="2017-02-23T20:03:14Z">
       <class name="com.appium.framework.bootstrap.bootstrap">
-        <test-method status="PASS" signature="StartTest()[pri:0, instance:com.appium.framework.bootstrap.bootstrap@d072a9]" name="StartTest" duration-ms="9344" started-at="2017-02-24T01:22:53Z" finished-at="2017-02-24T01:23:02Z">
+        <test-method status="PASS" signature="StartTest()[pri:0, instance:com.appium.framework.bootstrap.bootstrap@d072a9]" name="StartTest" duration-ms="9104" started-at="2017-02-24T01:33:05Z" finished-at="2017-02-24T01:33:14Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- StartTest -->
