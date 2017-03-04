@@ -11,7 +11,6 @@ import org.openqa.selenium.OutputType;
 
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
-import com.appium.framework.utils.JsonParser;
 import com.relevantcodes.extentreports.ExtentReports;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
@@ -26,8 +25,8 @@ public abstract class MasterExecuter {
 	public AndroidDriver<AndroidElement> dr1;
 	public AndroidElement Element;
 	public ExtentTest test;
-	public static JsonParser Parser2;
-	public void execute(JSONObject command) throws IOException, JSONException, InterruptedException, ParseException {
+	
+	public void execute(String command) throws IOException, InterruptedException {
 		
 		// TODO Auto-generated method stub
 		

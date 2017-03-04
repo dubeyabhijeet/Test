@@ -7,8 +7,7 @@ import java.util.Date;
 
 import com.relevantcodes.extentreports.DisplayOrder;
 import com.relevantcodes.extentreports.ExtentReports;
-import com.relevantcodes.extentreports.NetworkMode;
-import com.relevantcodes.extentreports.view.offline.*;
+
 public class ExtentManager {
 	private static ExtentReports extent;
 	
@@ -19,7 +18,7 @@ public class ExtentManager {
 			Date d= new Date();
 			String path="E:\\";
 			String fileName=d.toString().replace(":", "_").replace(" ", "_")+".html";
-			extent = new ExtentReports(path+fileName, true, DisplayOrder.NEWEST_FIRST,NetworkMode.OFFLINE);
+			extent = new ExtentReports(path+fileName, true, DisplayOrder.NEWEST_FIRST);
 			extent.loadConfig(new File("E:\\Self_Core\\Core_Framework\\ReportsConfig.xml"));
 			// optional
 			extent.addSystemInfo("Selenium Version", "2.53").addSystemInfo(
