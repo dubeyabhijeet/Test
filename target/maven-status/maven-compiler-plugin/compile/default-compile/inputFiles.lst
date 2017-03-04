@@ -1,12 +1,12 @@
 E:\Self_Core\Core_Framework\src\main\java\com\appium\framework\utils\Driver.java
 E:\Self_Core\Core_Framework\src\main\java\com\appium\framework\utils\test.java
+E:\Self_Core\Core_Framework\src\main\java\com\appium\framework\utils\TestCaseReader.java
 E:\Self_Core\Core_Framework\src\main\java\com\appium\framework\ExecutableCommands\StartApp.java
 E:\Self_Core\Core_Framework\src\main\java\com\appium\framework\ExecutableCommands\ShutApp.java
+E:\Self_Core\Core_Framework\src\main\java\com\appium\framework\bootstrap\bootstrap.java
 E:\Self_Core\Core_Framework\src\main\java\com\appium\framework\masterexec\MasterExecuter.java
-E:\Self_Core\Core_Framework\src\main\java\com\appium\framework\ExecutableCommands\ClickbyDesc.java
+E:\Self_Core\Core_Framework\src\main\java\com\appium\framework\utils\JsonParser.java
 E:\Self_Core\Core_Framework\src\main\java\com\appium\framework\utils\ExtentManager.java
 E:\Self_Core\Core_Framework\src\main\java\com\appium\framework\ExecutableCommands\StartNewActivity.java
 E:\Self_Core\Core_Framework\src\main\java\com\appium\framework\ExecutableCommands\Click.java
-E:\Self_Core\Core_Framework\src\main\java\com\appium\framework\App.java
-E:\Self_Core\Core_Framework\src\main\java\com\appium\framework\bootstrap\back.java
 E:\Self_Core\Core_Framework\src\main\java\com\appium\framework\ExecutableCommands\EnterSubSettings.java
