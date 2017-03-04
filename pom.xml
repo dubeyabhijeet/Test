@@ -53,13 +53,7 @@
 			<version>2.41.2</version>
 		</dependency>
 <!--  Testng -->
-		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>3.0.2</version>
-			<scope>test</scope>
-		</dependency>
-
+	
 		
 		<dependency>
 			<groupId>org.apache.maven.surefire</groupId>
